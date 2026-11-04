@@ -14,6 +14,16 @@ Geography: All India
 | Commodity | Available? | Target Files | Granularity | 2025 Row Count | Status |
 | --------- | ---------- | ------------ | ----------- | -------------- | ------ |
 | Onion     | Yes        | 2024-2026    | Daily       | 220,991        | Loaded |
+# MandiMitra – Data Source Audit (National Scope)
+
+## Source 2: Kaggle / AGMARKNET Parquet Mirror
+Geography: All India
+
+| Commodity | Available? | Target Files | Granularity | 2025 Row Count | Structural Cleanliness |
+| --------- | ---------- | ------------ | ----------- | -------------- | ---------------------- |
+| Onion     | Yes        | 2024-2026    | Daily       | 220,991        | High (Clean string)    |
+| Tomato    | Yes        | 2024-2026    | Daily       | 210,960        | High (Clean string)    |
+| Soybean   | Yes        | 2024-2026    | Daily       | [Paste Count]  | Medium (Spelled 'soyabean') |
 
 ## Verification Discoveries
 1. **File Format:** High-performance compressed Parquet files (`.parquet`).
