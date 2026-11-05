@@ -498,3 +498,58 @@ These findings indicate that historical coverage alone does not establish foreca
 ### Conclusion
 
 The dataset supports broad historical agricultural market analysis across multiple vegetables. Forecasting is possible as a historical experiment, but reliable operational forecasting requires more recent and sufficiently continuous observations.
+
+
+
+## Exploratory Data Analysis
+
+### Vegetable Market Coverage
+
+Exploratory analysis was conducted on 46 project-classified vegetables, covering approximately 30.34 million records across Indian agricultural markets.
+
+The analysis examined:
+
+- Monthly reporting coverage and changes in reporting activity.
+- Historical monthly price trends for major vegetables.
+- Seasonal price patterns across calendar months.
+- Price volatility and changes between consecutive market observations.
+- State-wise and market-wise price differences.
+
+The analysis identified a substantial decline in reporting volume beginning in November 2025. Reporting partially recovered in subsequent months but remained below October 2025 levels through April 2026. The dataset therefore has important freshness and reporting-continuity limitations.
+
+### Price Analysis Limitations
+
+National and state-level price comparisons use historical modal prices. Differences between markets may reflect variations in variety, grade, reporting periods and market coverage.
+
+Pooled market medians should not be interpreted as direct evidence that one market offers a better selling price. Reliable selling comparisons will require matching commodity variety, grade and comparable dates.
+
+Seasonal patterns are descriptive historical summaries. They do not independently establish predictable future price movements.
+
+### Pothencode Market Data Quality Finding
+
+An investigation of Pothencode market prices in Kerala identified unusually high reported prices for six major vegetables: Brinjal, Cauliflower, Green Chilli, Onion, Potato and Tomato.
+
+Key findings:
+
+- The divergence from other Kerala markets was particularly pronounced during 2023 and 2024.
+- Year-wise median prices were several times higher than the median of other qualifying Kerala markets.
+- Unusual concentrations in price endings such as 040 and 540 were observed during 2023–2024.
+- The same patterns were verified in the original Parquet files, confirming that they were present in the source data rather than introduced during preprocessing.
+
+**Treatment and limitations:**
+
+- Original observations are retained without modification.
+- Pothencode observations from 2023–2024 are flagged for further verification.
+- They should be excluded from primary market-price rankings until independently validated.
+- No assumed correction factor is applied.
+- The cause of the unusual reporting pattern remains unknown.
+
+### Forecasting and Data Freshness Limitations
+
+The dataset ends on 20 April 2026. It cannot support claims of live or current market prices as of the project's development date.
+
+Earlier time-series screening also identified substantial reporting interruptions across several commodities and market series.
+
+Forecasting should therefore be treated as an experimental, selective module. Candidate series must pass historical coverage, recent reporting and continuity checks before model training and evaluation.
+
+Broad, reliable forecasting across all commodities cannot be assumed from this dataset alone.
