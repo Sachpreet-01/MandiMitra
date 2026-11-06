@@ -553,3 +553,46 @@ Earlier time-series screening also identified substantial reporting interruption
 Forecasting should therefore be treated as an experimental, selective module. Candidate series must pass historical coverage, recent reporting and continuity checks before model training and evaluation.
 
 Broad, reliable forecasting across all commodities cannot be assumed from this dataset alone.
+
+
+## 7. National Market Comparison
+
+### Objective
+Compared agricultural markets across India using like-for-like observations: the same commodity, variety, grade and arrival date. Each market's modal price was compared against the median price reported by its peers on that date.
+
+### Scope and methodology
+- Comparison period: 1 January 2021 to 31 October 2025.
+- November 2025 onward was excluded because of a substantial reporting-volume collapse.
+- Markets were compared only when at least three markets reported the same commodity, variety, grade and date.
+- Market-level rankings required at least 100 matched observations across at least 30 comparison days.
+- Annual consistency analysis required at least 30 observations per market-commodity-year.
+- The stable shortlist required at least four years of evidence, positive premiums in at least 75% of observed years, a median annual premium of at least 10%, and an annual premium range no greater than 40 percentage points.
+
+### Results
+
+| Metric | Result |
+|---|---:|
+| Market-day observations after anomaly review | 11,375,595 |
+| Matched observations | 11,305,063 |
+| Market-commodity combinations | 26,266 |
+| Rankable market-commodity combinations | 16,921 |
+| Combinations with at least 3 years of evidence | 10,285 |
+| Consistently above-peer combinations | 3,212 |
+| Stable market shortlist | 1,295 |
+| Commodities in stable shortlist | 41 |
+
+### Data-quality treatment
+Potential market-wide price-scale anomalies at Kollengode (2022) and Pothencode (2023–2024) were excluded from primary market rankings at the market-year level. Commodity-specific extreme price-scale observations were flagged for investigation rather than automatically excluded. These anomalies were also present in the original source data; their causes remain unverified.
+
+Possible farmers' markets were identified using market-name patterns such as Uzhavar Sandhai and Rythu Bazar. This is a heuristic classification, not an official market-type designation.
+
+### Limitations
+- Premiums represent differences from peer-market medians, not actual farmer profit or farm-gate realisation.
+- Transportation costs, handling charges, market fees, travel distance, produce quality and available selling volume were not included.
+- Historical rankings do not establish current market conditions.
+- The source dataset ends on 20 April 2026, and reporting declined sharply from November 2025.
+- The dataset does not contain arrival quantities, so supply-volume analysis is outside the current scope.
+- The results support historical market exploration, not guaranteed selling recommendations.
+
+### Conclusion
+The analysis establishes a national, evidence-based framework for comparing agricultural markets. It identifies markets with historically higher or lower prices relative to comparable peers while accounting for observation coverage and selected data-quality anomalies. Current selling recommendations require fresher, more reliable market data and location-specific cost information.
