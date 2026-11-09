@@ -1,0 +1,33 @@
+{
+    "project": "MandiMitra",
+    "experiment": "7-Day Relative Market Performance Prediction",
+    "target": "Target_7D_Median_Log_Ratio",
+    "features": [
+        "Current_Log_Ratio",
+        "Lag_1_Log_Ratio",
+        "Lag_3_Log_Ratio",
+        "Lag_7_Log_Ratio",
+        "Rolling_Median_7",
+        "Rolling_Median_30",
+        "Rolling_Mean_7",
+        "Rolling_Std_7",
+        "Log_Price_Change_1",
+        "Log_Price_Change_7",
+        "Days_Since_Previous_Report",
+        "Peer_Market_Count",
+        "Source_Records",
+        "Month",
+        "Day_Of_Year"
+    ],
+    "quantiles": [
+        0.1,
+        0.5,
+        0.9
+    ],
+    "calibration_method": "Commodity-specific empirical validation adjustment",
+    "calibration_source": "2024 validation period",
+    "test_period": "2025-01-01 to 2025-10-24",
+    "prediction_horizon": "7 calendar days",
+    "minimum_future_observations": 3,
+    "random_seed": 42
+}

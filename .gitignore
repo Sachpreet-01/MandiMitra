@@ -1,26 +1,37 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+env/
+ENV/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Environments
-.venv/
-venv/
-env/
+# Temporary files and caches
+**/.tmp/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+*.tmp
 
 # Secrets
 .env
+.env.*
+!.env.example
+.streamlit/secrets.toml
 
-# Data
-data/raw/*
-data/processed/*
-data/external/*
+# Raw and intermediate research datasets
+data/raw/
+data/processed/
+data/external/
 
-# Models
-models/*
+# Temporary model files
+models/.tmp/
 
-# System
+# System files
 .DS_Store
 Thumbs.db
+desktop.ini
