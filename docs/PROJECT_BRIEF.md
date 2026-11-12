@@ -2,76 +2,111 @@
 
 ## 1. Project Overview
 
-MandiMitra is a multi-commodity agricultural market intelligence platform designed to help Indian farmers and Farmer Producer Organisations (FPOs) make better-informed agricultural selling decisions.
+MandiMitra is an India-wide, multi-commodity agricultural market intelligence platform designed to help farmers and Farmer Producer Organisations (FPOs) make better-informed market selection and selling decisions.
+
+The application combines historical mandi price analysis, relative market performance forecasting and a net realisation calculator to provide practical decision-support insights.
 
 ## 2. Problem Statement
 
-Farmers often lack convenient access to analytical tools that help them compare agricultural markets, understand historical price movements, assess market volatility and anticipate potential price changes.
+Farmers often have limited access to tools that help them compare agricultural markets, understand historical price behaviour, evaluate price volatility and identify markets that may offer better relative price performance.
 
-Existing platforms provide market information, but MandiMitra aims to provide an additional layer of predictive analytics and decision support.
+MandiMitra addresses this problem by transforming historical agricultural market data into accessible analytical insights and short-term forecasts.
 
 ## 3. Target Users
 
 - Small and medium-sized farmers.
-- Farmer Producer Organisations.
-- Agricultural market analysts.
+- Farmer Producer Organisations (FPOs).
+- Agricultural market analysts and researchers.
 
-## 4. Initial Geographical Scope
+## 4. Geographical and Commodity Scope
 
-Maharashtra, India.
+**Geographical coverage:** India.
 
-## 5. Planned Commodities
+**Supported commodities:**
+1. Cotton
+2. Grapes
+3. Onion
+4. Pomegranate
+5. Soybean
+6. Tomato
 
-1. Onion
-2. Tomato
-3. Soybean
-4. Cotton
-5. Grapes
-6. Pomegranate
+Coverage depends on the availability and quality of historical market observations.
 
-Commodity coverage is subject to historical data availability and quality.
+## 5. Application Features
 
-## 6. Core Modules
+### 5.1 Historical Market Explorer
 
-1. Market Explorer
-2. Price Intelligence and Forecasting
-3. Selling Decision Assistant
-4. Agricultural Market Research
+- Explore historical mandi prices.
+- Compare price movements across markets.
+- Examine commodity-specific market behaviour.
 
-## 7. Planned Technical Components
+### 5.2 Market Performance Outlook
 
-- Python and Pandas for data processing.
-- DuckDB or PostgreSQL for data storage.
-- Scikit-learn, XGBoost and LightGBM for machine learning.
-- SHAP for model explainability.
-- Streamlit for the application.
-- Plotly for interactive visualisations.
+- Estimate short-term relative market price performance.
+- Compare markets within commodity-specific peer groups.
+- Present quantile-based prediction intervals to communicate uncertainty.
 
-## 8. Data Sources
+### 5.3 Net Realisation Calculator
 
-- AGMARKNET / data.gov.in
-- CEDA Agricultural Market Data Portal
-- Maharashtra State Agricultural Marketing Board
+- Estimate potential net selling realisation.
+- Account for relevant selling and transportation costs.
+- Compare the financial implications of different market choices.
 
-Only authentic, traceable data will be used for model training and evaluation.
+## 6. Data and Methodology
 
-## 9. Project Objectives
+MandiMitra uses historical agricultural market price observations sourced from AGMARKNET / data.gov.in.
 
-- Build reproducible agricultural data pipelines.
-- Analyse historical agricultural market behaviour.
-- Develop and compare predictive models.
-- Detect unusual market price movements.
-- Provide market comparisons and decision-support insights.
-- Develop an interactive web application.
+The application dataset contains:
 
-## 10. Evaluation
+- 11,286,611 market-price records.
+- 45 vegetables.
+- 2,167 distinct market names.
+- 2,211 physical market identifiers.
+- 546 districts across 30 states.
+- Application data coverage from January 2021 to 31 October 2025.
 
-Models will be evaluated using chronological validation, MAE, RMSE and directional accuracy.
+The project uses data preprocessing, exploratory analysis, chronological model evaluation and market-level time-series comparisons.
 
-## 11. Guiding Principles
+## 7. Machine Learning
 
-- Real-world data over synthetic training data.
-- Reproducibility.
-- Transparent model evaluation.
-- Explainable predictions.
-- Practical user value.
+The relative market performance forecasting engine uses LightGBM Quantile Regression to estimate seven-day market performance relative to the median of comparable peer markets.
+
+Model evaluation includes:
+
+- Chronological holdout testing.
+- Comparison against persistence and current-ratio baselines.
+- Mean Absolute Error (MAE).
+- Paired moving-block bootstrap confidence intervals.
+- Prediction interval coverage analysis.
+
+The project also evaluates raw-price forecasting separately and does not assume that a more complex model automatically outperforms a simple baseline.
+
+## 8. Technology Stack
+
+- Python
+- Pandas and NumPy
+- DuckDB and PyArrow
+- Scikit-learn
+- LightGBM
+- XGBoost
+- Streamlit
+- Altair
+- Matplotlib and Seaborn
+- Git and GitHub
+
+## 9. Limitations and Responsible Use
+
+- The application uses historical data ending on 31 October 2025; it does not provide live mandi prices.
+- Forecasts estimate relative market performance, not guaranteed future prices or profits.
+- Market comparisons depend on the availability of sufficiently comparable observations.
+- Prediction uncertainty and commodity-specific performance differences should be considered before making decisions.
+
+MandiMitra is a research and portfolio prototype intended to support informed decisions, not replace local market knowledge or professional agricultural advice.
+
+## 10. Project Repository
+
+The repository contains the Streamlit application, processed application datasets, model artifacts, research notebooks, documentation and model validation tests.
+
+**Live application:** https://mandimitra-p9yunvabtc39o6vutveoer.streamlit.app/
+
+**GitHub repository:** https://github.com/Sachpreet-01/MandiMitra

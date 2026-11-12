@@ -22,14 +22,86 @@ Explore historical modal prices across commodities, markets, and reporting dates
 
 Compare a market's predicted seven-day relative price performance against the median of eligible peer markets.
 
-The forecasting system uses **LightGBM Quantile Regression** to estimate median performance and prediction uncertainty. The application displays precomputed model observations rather than running model inference for every user interaction.
+The forecasting system uses **LightGBM Quantile Regression** to estimate median performance and prediction uncertainty. The application retrieves precomputed model observations from a dedicated Parquet dataset. It does not run LightGBM inference for every user interaction. Historical market data is queried separately through DuckDB.
 
 ### 3. Net Realisation Calculator
 
 Estimate potential net selling realisation after accounting for costs such as transportation, commission, other expenses, and wastage. Compare the financial implications of selling at different markets using user-provided assumptions.
 
 ---
+## System Architecture
 
+MandiMitra follows a data-driven architecture that separates historical market exploration from precomputed forecasting observations.
+
+Historical AGMARKNET Data
+          |
+          v
+Data Auditing and Preprocessing
+          |
+          v
+Processed Application Dataset
+          |
+          +--------------------------+
+          |                          |
+          v                          v
+Historical Market Data       Forecasting Pipeline
+          |                          |
+          v                          v
+DuckDB + Parquet             LightGBM Quantile Models
+          |                          |
+          |                          v
+          |                 Precomputed Forecast
+          |                   Observations
+          |                          |
+          +-------------+------------+
+                        |
+                        v
+                Streamlit Application
+                        |
+          +-------------+-------------+
+          |             |             |
+          v             v             v
+      Historical     Market         Net
+       Explorer    Performance   Realisation
+                    Outlook      Calculator
+
+
+The application queries historical Parquet data through DuckDB and retrieves precomputed forecasting observations from a separate Parquet dataset. This keeps data access and forecasting outputs separate from the interactive application interface.
+
+
+
+## Application Screenshots
+
+### 1. Historical Market Explorer
+
+Explore historical agricultural prices and compare market behaviour.
+
+<p align="center">
+  <img src="screenshots/historical_explorer_filters.png" width="49%" alt="Historical market explorer filters">
+  <img src="screenshots/historical_explorer_chart.png" width="49%" alt="Historical market explorer chart">
+</p>
+
+### 2. Market Performance Outlook
+
+Explore predicted relative market performance, market rankings and prediction uncertainty.
+
+<p align="center">
+  <img src="screenshots/performance_outlook_filters.png" width="49%" alt="Market performance outlook filters">
+  <img src="screenshots/performance_outlook_results.png" width="49%" alt="Market performance outlook results">
+</p>
+
+### 3. Net Realisation Calculator
+
+Estimate potential net selling realisation after accounting for selling-related costs.
+
+<p align="center">
+  <img src="screenshots/net_realisation_inputs.png" width="49%" alt="Net realisation calculator inputs">
+  <img src="screenshots/net_realisation_results.png" width="49%" alt="Net realisation calculator results">
+</p>
+
+---
+
+---
 ## Key Findings
 
 ### Raw-price forecasting
@@ -96,6 +168,8 @@ The deployed application uses a dedicated processed dataset containing:
 | Districts | 546 |
 | States | 30 |
 | Date range | 1 Jan 2021 – 31 Oct 2025 |
+
+The deployed application supports 45 vegetables. This is separate from the six selected commodities (Cotton, Grapes, Onion, Pomegranate, Soybean, and Tomato) used in the earlier focused research and preprocessing pipeline.
 
 **Primary data source:** AGMARKNET daily agricultural market-price records, distributed through India's Open Government Data platform. The project uses a Kaggle-hosted dataset mirror.
 
