@@ -6,7 +6,7 @@ MandiMitra is an India-wide agricultural market intelligence and machine learnin
 
 The application is built on **11.29 million historical market-price records**, covering **45 vegetables, 2,167 distinct market names, 546 districts and 30 states across India**, from January 2021 to October 2025.
 
-**Live Demo:** Coming soon · **GitHub Repository:** [Repository URL]
+**Live Demo:** Coming soon · **GitHub Repository:** https://github.com/Sachpreet-01/MandiMitra
 
 ---
 
