@@ -29,46 +29,48 @@ The forecasting system uses **LightGBM Quantile Regression** to estimate median 
 Estimate potential net selling realisation after accounting for costs such as transportation, commission, other expenses, and wastage. Compare the financial implications of selling at different markets using user-provided assumptions.
 
 ---
+
 ## System Architecture
 
 MandiMitra follows a data-driven architecture that separates historical market exploration from precomputed forecasting observations.
 
-Historical AGMARKNET Data
-          |
-          v
-Data Auditing and Preprocessing
-          |
-          v
-Processed Application Dataset
-          |
-          +--------------------------+
-          |                          |
-          v                          v
-Historical Market Data       Forecasting Pipeline
-          |                          |
-          v                          v
-DuckDB + Parquet             LightGBM Quantile Models
-          |                          |
-          |                          v
-          |                 Precomputed Forecast
-          |                   Observations
-          |                          |
-          +-------------+------------+
-                        |
-                        v
-                Streamlit Application
-                        |
-          +-------------+-------------+
-          |             |             |
-          v             v             v
-      Historical     Market         Net
-       Explorer    Performance   Realisation
-                    Outlook      Calculator
-
+```text
+                  Historical AGMARKNET Data
+                            |
+                            v
+                 Data Auditing and Preprocessing
+                            |
+                            v
+                 Processed Application Dataset
+                            |
+              +-------------+-------------+
+              |                           |
+              v                           v
+     Historical Market Data       Forecasting Pipeline
+              |                           |
+              v                           v
+         DuckDB + Parquet        LightGBM Quantile Models
+                                          |
+                                          v
+                                Precomputed Forecast
+                                    Observations
+              |                           |
+              +-------------+-------------+
+                            |
+                            v
+                   Streamlit Application
+                            |
+              +-------------+-------------+
+              |             |             |
+              v             v             v
+          Historical     Market Net     Net Realisation
+           Explorer     Performance      Calculator
+                          Outlook
+```
 
 The application queries historical Parquet data through DuckDB and retrieves precomputed forecasting observations from a separate Parquet dataset. This keeps data access and forecasting outputs separate from the interactive application interface.
 
-
+---
 
 ## Application Screenshots
 
