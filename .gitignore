@@ -35,3 +35,11 @@ models/.tmp/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Editor and operating-system files
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.backup
